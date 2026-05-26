@@ -1,0 +1,47 @@
+set(CMAKE_TOOLCHAIN_FILE "$ENV{IDF_PATH}/tools/cmake/toolchain-esp32s3.cmake")
+
+set(CMAKE_LINK_LIBRARY_USING_WHOLE_ARCHIVE "LINKER:--whole-archive"
+                                           "<LINK_ITEM>"
+                                           "LINKER:--no-whole-archive")
+set(CMAKE_LINK_LIBRARY_USING_WHOLE_ARCHIVE_SUPPORTED TRUE)
+set(CMAKE_LINK_LIBRARY_WHOLE_ARCHIVE_ATTRIBUTES LIBRARY_TYPE=STATIC DEDUPLICATION=YES OVERRIDE=DEFAULT)
+
+
+set(CMAKE_C_FLAGS     "${CMAKE_C_FLAGS} -mlongcalls -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -ffunction-sections --specs=picolibc.specs -fdata-sections -fno-threadsafe-statics -fno-rtti -fno-exceptions")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mlongcalls -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero -ffunction-sections --specs=picolibc.specs -fdata-sections -fno-threadsafe-statics -fno-rtti -fno-exceptions")
+
+
+
+message("CMAKE_C_FLAGS   used for this build: ${CMAKE_C_FLAGS}")
+message("CMAKE_CXX_FLAGS used for this build: ${CMAKE_CXX_FLAGS}")
+
+
+
+
+set(FORTE_FREERTOS_INCLUDE_DIR 
+  "$ENV{IDF_PATH}/components/freertos/FreeRTOS-Kernel/include"
+  "$ENV{IDF_PATH}/components/freertos/config/include"
+  "$ENV{IDF_PATH}/components/freertos/config/include/freertos"
+  "$ENV{IDF_PATH}/components/freertos/config/xtensa/include"
+  "$ENV{IDF_PATH}/components/xtensa/include"
+  "$ENV{IDF_PATH}/components/xtensa/esp32s3/include"
+  "$ENV{IDF_PATH}/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos"
+  "$ENV{IDF_PATH}/components/esp_hw_support/include"
+  "$ENV{IDF_PATH}/components/soc/include"
+  "$ENV{IDF_PATH}/components/soc/esp32s3/include"
+  "$ENV{IDF_PATH}/components/esp_common/include"
+  "$ENV{IDF_PATH}/components/esp_system/include"
+  "$ENV{IDF_PATH}/components/soc/esp32s3/register"
+  "$ENV{IDF_PATH}/components/esp_libc/platform_include"
+  "$ENV{IDF_PATH}/components/heap/include"
+  "$ENV{IDF_PATH}/components/esp_rom/include"
+  "$ENV{IDF_PATH}/components/esp_timer/include"
+  "$ENV{IDF_PATH}/components/lwip/port/freertos/include" 
+  "$ENV{IDF_PATH}/components/lwip/port/esp32xx/include"
+  "$ENV{IDF_PATH}/components/lwip/include"
+  "$ENV{IDF_PATH}/components/lwip/port/include" 
+  "$ENV{IDF_PATH}/components/lwip/port/esp32xx/include" 
+  "$ENV{IDF_PATH}/components/lwip/lwip/src/include"
+  "$ENV{IDF_PATH}/components/newlib/platform_include"
+)
+
